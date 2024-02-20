@@ -1,7 +1,7 @@
   <h1>Places I've Visited</h1>
 
 <ul>
-  <% for places in  %>
+  <% for place in @places%>
     <li>
       <%= link_to place.name, place_path(place) %>
     </li>
