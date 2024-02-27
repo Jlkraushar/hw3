@@ -1,14 +1,24 @@
 class EntriesController < ApplicationController
+
+  # def index
+  #   @entry = Entries.all
+  # end
+
+  def show
+  @entry = Entry.find_by({ "id" => params["id"] })
+  @place = Place.find_by({"id" => @entry["place_id"]})
+  end
+
   def new
-    @entry = Entries.new
   end
 
   def create
-    @place = Place.find(params[:place_id])
-    @entry = @place.entries.build(entry_params)
-    if @entry.save
-      redirect_to place_path(@place), notice: 'Entry added successfully.'
-    else
-      render :new
+    @entry = Entry.new
+    @entry["title"] = params["title"]
+    @entry["description"] = params["description"]
+    @entry["posted_on"] = params["posted_on"]
+    @entry.save
+    redirect_to "/places/#{@entry["place_id"]}"
   end
+
 end

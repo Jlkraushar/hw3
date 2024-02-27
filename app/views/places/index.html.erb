@@ -1,11 +1,11 @@
-  <h1>Places I've Visited</h1>
+  <h1>Places I've Been</h1>
 
 <ul>
   <% for place in @places%>
     <li>
-      <%= link_to place.name, place_path(place) %>
+      <a href="/places/<%= place["id"] %>"><%= place["name"] %></a>
     </li>
   <% end %>
 </ul>
 
-<%= link_to 'Add New Place', new_place_path %>
+<p><a href="/places/new">Add a new place</a></p>

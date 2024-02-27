@@ -1,11 +1,11 @@
-<h1><%= @place.name %></h1>
+<h1><%= @place["name"] %></h1>
 
-<p>Entries:</p>
 <ul>
-  <% @place.entries.each do |entry| %>
-    <li><%= entry.title %> - <%= entry.description %></li>
+  <% for entry in @entries %>
+    <li>
+      <a href="/entries/<%= entry["id"] %>">
+        <%= entry["title"] %>, <%= entry["description"] %>
+      </a>
+    </li>
   <% end %>
 </ul>
-
-<%= link_to 'Back to Places', places_path %>
-<%= link_to 'Add Entry', new_place_entry_path(@place) %>
